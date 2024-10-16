@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>    
+<meta charset="utf-8">
+<title>JS2_4</title>
+</head>
+
+<body>
+
+    <h1>JS2_4</h1>
+
+    <form>
+        <input type="text" id="username" placeholder="Enter your name" />
+
+        <input type="button" id="hellobutton" value="Hello"/>
+        <input type="button" id="goodbyebutton" value="Goodbye"/>
+        <input type="button" id="greetingsbutton" value="Greetings"/>
+
+    </form>
+
+    <script>
+
+        window.onload = function() {
+
+            function speak(event) {
+                var name = document.getElementById('username').value;
+                var prefix = event.target.value;
+
+                alert(prefix + ", " + name + "!");
+            }
+        
+
+        document.getElementById('hellobutton').addEventListener('click', speak);
+
+        document.getElementById('goodbyebutton').addEventListener('click', speak);
+
+        document.getElementById('greetingsbutton').addEventListener('click', speak);
+
+    }
+        
+    
+    </script>
+
+
+
+
+
+</body>
+</html>

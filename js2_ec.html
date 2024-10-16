@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>    
+<meta charset="utf-8">
+<title>JS2_EC</title>
+</head>
+    <style>
+        
+        #stateList {
+            border: 1px solid black;
+            padding: 10px;
+            width: 200px;
+            min-height: 50px;
+            margin-top: 10px;
+        }
+
+        #stateList ol {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JS2_EC</h1>
+
+    <label for="states">Choose a state:</label>
+    <select id="states" size="10"></select>
+
+    <input type="button" id="addStateButton" value="Add State" />
+
+   
+    <div id="stateList">
+        <ol id="stateListItems"></ol>
+    </div>
+
+    <input type="button" id="clearStateButton" value="Clear States" />
+
+    <script>
+        const states = [
+            "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+            "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+            "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+            "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+            "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
+            "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
+            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon"
+        ];
+
+        let originalStates = [...states];
+
+        const selectElement = document.getElementById('states');
+
+        function populateSelect(statesArray) {
+            selectElement.innerHTML = ''; 
+            statesArray.forEach(function(state) {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                selectElement.appendChild(option);
+            });
+        }
+
+        populateSelect(states);
+
+        document.getElementById('addStateButton').addEventListener('click', function() {
+            const selectedState = selectElement.options[selectElement.selectedIndex].value;
+
+            
+            states.splice(selectElement.selectedIndex, 1);
+            populateSelect(states); 
+
+            const stateListItems = document.getElementById('stateListItems');
+            const listItem = document.createElement('li');
+            listItem.textContent = selectedState;
+            stateListItems.appendChild(listItem);
+        });
+
+        document.getElementById('clearStateButton').addEventListener('click', function() {
+            document.getElementById('stateListItems').innerHTML = '';
+
+            states.length = 0; 
+            states.push(...originalStates); 
+            populateSelect(states); 
+        });
+
+    </script>
+
+</body>
+</html>
